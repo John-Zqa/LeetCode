@@ -15,3 +15,23 @@ public:
         return maxL;
     }
 };
+
+// Using int[128]
+class Solution2 {
+public:
+    int lengthOfLongestSubstring(string s) {
+        int maxL = 0, curL = 0, cIndex[128] = {0};
+        for (int i = 0, flag = 0; i < s.length(); i++) {
+            char curC = s[i];
+            if (cIndex[curC] > flag) {
+                flag = cIndex[curC];
+            }
+            curL = i - flag + 1;
+            if (curL > maxL) {
+                maxL = curL;
+            }
+            cIndex[curC] = i + 1;
+        }
+        return maxL;
+    }
+};
